@@ -212,7 +212,7 @@ if (!isset($_SESSION["user"])) {
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="assets/tugu_monas.jpg" class="img-fluid rounded shadow-lg" alt="Monas Jakarta">
+                <img src="assets/Jakarta.jpg" class="img-fluid rounded shadow-lg" alt="Monas Jakarta">
             </div>
             <div class="col-lg-6">
                 <h2 class="display-5 fw-bold mb-3">Jakarta, Kota Kolaborasi</h2>
@@ -241,7 +241,7 @@ if (!isset($_SESSION["user"])) {
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm border-0 berita-card">
-                    <img src="assets/berita1.jpg" class="card-img-top" alt="Ilustrasi berita">
+                    <img src="assets/Transjakarta.jpg" class="card-img-top" alt="Ilustrasi berita">
                     <div class="card-body">
                         <span class="badge bg-primary mb-2">Pemerintahan</span>
                         <h5 class="card-title">Pj. Gubernur Resmikan Pembangunan Transportasi Terintegrasi Baru</h5>
@@ -253,7 +253,7 @@ if (!isset($_SESSION["user"])) {
             </div>
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm border-0 berita-card">
-                    <img src="assets/berita2.jpg" class="card-img-top" alt="Ilustrasi pengumuman">
+                    <img src="assets/pajak.jpg" class="card-img-top" alt="Ilustrasi pengumuman">
                     <div class="card-body">
                         <span class="badge bg-danger mb-2">Pengumuman</span>
                         <h5 class="card-title">Batas Akhir Pembayaran Pajak Bumi Bangunan Diperpanjang</h5>
@@ -265,7 +265,7 @@ if (!isset($_SESSION["user"])) {
             </div>
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm border-0 berita-card">
-                    <img src="assets/berita3.jpg" class="card-img-top" alt="Ilustrasi kegiatan">
+                    <img src="assets/wifi.jpg" class="card-img-top" alt="Ilustrasi kegiatan">
                     <div class="card-body">
                         <span class="badge bg-info mb-2">Agenda</span>
                         <h5 class="card-title">Jakarta Mendapat Penghargaan Kota Paling Berkelanjutan Se-Asia Tenggara</h5>
@@ -282,10 +282,10 @@ if (!isset($_SESSION["user"])) {
     </div>
 </section>
 
-<section class="quick-stats-section py-5 text-white">
+<section class="quick-stats-section py-5 text-black">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="mb-3 text-white">Jakarta dalam Angka</h2>
+            <h2 class="mb-3 text-black">Jakarta dalam Angka</h2>
             <p class="lead">Data dan Statistik Cepat Mengenai Ibukota</p>
         </div>
         <div class="row g-4 text-center">
@@ -415,7 +415,7 @@ if (!isset($_SESSION["user"])) {
       Jakarta
     </a>
 
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-black py-4">
       <div class="container text-center">
         <p>&copy; 2024 CoreJKT - Portal Pemerintah Provinsi DKI Jakarta.</p>
       </div>
