@@ -82,8 +82,8 @@ if (!isset($_SESSION["user"])) {
                 Profil
               </a>
               <ul class="dropdown-menu" aria-labelledby="profilDropdown">
-                <li><a class="dropdown-item" href="#">Profil Daerah</a></li>
-                <li><a class="dropdown-item" href="#">Visi & Misi</a></li>
+                <li><a class="dropdown-item" href="profil_daerah.php">Profil Daerah</a></li>
+                <li><a class="dropdown-item" href="visi_misi.php">Visi & Misi</a></li>
                 <li>
                   <a class="dropdown-item" href="#">Struktur Organisasi</a>
                 </li>
@@ -125,8 +125,8 @@ if (!isset($_SESSION["user"])) {
                 <li>
                   <a class="dropdown-item" href="berita.php">Berita Terbaru</a>
                 </li>
-                <li><a class="dropdown-item" href="#">Agenda Kegiatan</a></li>
-                <li><a class="dropdown-item" href="#">Pengumuman</a></li>
+                <li><a class="dropdown-item" href="agenda_launch.php">Agenda Kegiatan</a></li>
+                <li><a class="dropdown-item" href="pengumuman.php">Pengumuman</a></li>
               </ul>
             </li>
 

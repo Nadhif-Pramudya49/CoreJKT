@@ -1,6 +1,6 @@
 services:
   nagios:
-    image: jasonrivers/nagios
+    image: lscr.io/linuxserver/nagios:latest
     container_name: nagios_container
     ports:
       - "8081:80"
