@@ -1,0 +1,356 @@
+
+:root {
+    --blue-dark: #081a33; 
+    --blue-soft: #123b7a; 
+    --glass: rgba(255, 255, 255, 0.15); 
+    --text-color-light: #ffffff;
+    --text-color-dark: #343a40;
+    --hero-overlay-color: rgba(8, 26, 51, 0.75); 
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    
+    background-color: #f8f9fa;
+}
+
+
+.login-body {
+    background: url('../assets/Jakarta.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.login-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 15, 30, 0.65);
+    backdrop-filter: blur(3px);
+}
+
+
+.login-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 520px;
+    padding: 50px 45px;
+    border-radius: 20px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    color: white;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    animation: fadeUp .7s ease;
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.login-container label {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.login-container .form-control {
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+}
+.login-container .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(18, 59, 122, .5);
+}
+
+
+.login-container button {
+    margin-top: 15px;
+    height: 50px;
+    border-radius: 14px;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-soft));
+    border: none;
+}
+.login-container button:hover {
+    opacity: .9;
+}
+
+
+
+
+.navbar-dark {
+ 
+    background-color: var(--blue-dark) !important;
+}
+.navbar-brand .brand-text {
+    font-weight: 600;
+    color: var(--text-color-light);
+    font-size: 1rem;
+}
+
+
+.btn-success-custom { 
+    background-color: var(--blue-soft); 
+    border-color: var(--blue-soft);
+    color: var(--text-color-light) !important; 
+    font-weight: 500;
+}
+.btn-success-custom:hover {
+    background-color: #0d2a58; 
+    border-color: #0d2a58;
+}
+.btn-outline-light-custom {
+    color: var(--text-color-light);
+    border-color: var(--text-color-light);
+}
+.btn-outline-light-custom:hover {
+    background-color: var(--text-color-light);
+    color: var(--blue-dark);
+}
+
+
+
+.hero-section {
+  
+    background-image: url('../assets/Jakarta.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color-light);
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh; 
+}
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--hero-overlay-color); 
+    z-index: 0;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+
+.hero-search .form-control {
+    border-radius: 50px;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    height: auto;
+    border: none;
+}
+.hero-search .input-group-text {
+    border-radius: 50px 0 0 50px;
+    background-color: white;
+    border: none;
+    padding-left: 20px;
+}
+.hero-search .form-control {
+    border-radius: 0 50px 50px 0;
+}
+.hero-search .input-group-text i {
+    color: #6c757d;
+}
+
+
+.layanan-publik-section {
+    padding: 60px 0;
+    background-color: white; 
+}
+.layanan-publik-section h2 {
+    color: var(--text-color-dark);
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+.layanan-publik-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--blue-soft); 
+    margin: 10px auto 0;
+}
+
+
+.layanan-publik-section .layanan-item {
+    text-align: center;
+    padding: 30px 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 0 rgba(0,0,0,0); 
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    text-decoration: none;
+    color: var(--text-color-dark);
+    
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.layanan-publik-section .layanan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: var(--blue-soft);
+    color: var(--blue-soft);
+}
+.layanan-publik-section .layanan-item i {
+    font-size: 2.8rem; 
+    color: var(--blue-soft); 
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: block;
+}
+.layanan-publik-section .layanan-item h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.popular-search-sidebar {
+    position: fixed;
+    left: 0;
+    top: 30%;
+    background-color: var(--blue-dark);
+    color: var(--text-color-light);
+    padding: 10px 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transform: rotate(90deg) translateY(-100%);
+    transform-origin: 0 100%;
+    white-space: nowrap;
+    z-index: 999;
+}
+.accessibility-button {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--blue-soft);
+    color: var(--text-color-light);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    cursor: pointer;
+}
+.ogp-local-button {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: var(--blue-dark);
+    color: var(--text-color-light);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #051025 !important; 
+    color: var(--text-color-light);
+}
+
+/* ==================================== */
+/* 7. Style Bagian Konten Baru */
+/* ==================================== */
+
+/* Kustomisasi Warna untuk bagian baru */
+.btn-primary-custom {
+    background-color: var(--corejkt-blue);
+    border-color: var(--corejkt-blue);
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #082d4b;
+    border-color: #082d4b;
+    color: white;
+}
+
+.btn-outline-secondary-custom {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-secondary-custom:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Bagian Profil Highlight */
+.profil-highlight-section img {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Bagian Berita */
+.berita-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.text-primary-custom {
+    color: var(--corejkt-blue) !important;
+}
+
+.text-primary-custom:hover {
+    color: var(--corejkt-green) !important;
+}
+
+/* Bagian Statistik Cepat */
+.quick-stats-section {
+    background: linear-gradient(135deg, var(--corejkt-blue), #1e5983);
+}
+
+.stat-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.stat-box:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    color: #ffc107; /* Warna kuning sebagai highlight */
+}
+
+.quick-stats-section h3 {
+    color: white;
+}
+
+.quick-stats-section p.lead {
+    font-size: 1rem;
+    font-weight: 300;
+}
