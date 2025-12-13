@@ -173,7 +173,6 @@ if (!isset($_SESSION["user"])) {
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="#">English</a></li>
-                <li><a class="dropdown-item" href="#">Arabic</a></li>
                 <li><a class="dropdown-item" href="#">Betawi</a></li>
                 <li><a class="dropdown-item" href="#">Sunda</a></li>
                 <li><a class="dropdown-item" href="#">Jawa</a></li>
