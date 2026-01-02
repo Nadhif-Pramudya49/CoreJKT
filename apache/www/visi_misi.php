@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css" /> 
     
     <style>
-        /* CSS Khusus Halaman Visi Misi */
+        
         .page-header {
             background-color: var(--blue-soft);
             color: white;
@@ -107,13 +107,13 @@
         </div>
 
         <div class="text-center mt-5">
-            <a href="profil_daerah.html" class="btn btn-lg" style="background-color: #f0f0f0; color: var(--blue-dark);"><i class="fas fa-arrow-left me-2"></i> Kembali ke Profil Daerah</a>
+            <a href="profil_daerah.php" class="btn btn-lg" style="background-color: #f0f0f0; color: var(--blue-dark);"><i class="fas fa-arrow-left me-2"></i> Kembali ke Profil Daerah</a>
         </div>
     </div>
 
     <footer class="text-white py-4 mt-5" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Visi & Misi DKI Jakarta.</p>
+            <p>&copy; 2025 CoreJKT - Visi & Misi DKI Jakarta.</p>
         </div>
     </footer>
 

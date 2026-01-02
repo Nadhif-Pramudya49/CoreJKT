@@ -69,7 +69,7 @@
                         <i class="fas fa-user-plus card-icon"></i>
                         <h5 class="card-title fw-bold" style="color: var(--blue-soft);">PPDB Online</h5>
                         <p class="card-text small text-secondary">Pendaftaran Peserta Didik Baru untuk SD, SMP, dan SMA/SMK Negeri. Cek jadwal, zonasi, dan hasil seleksi.</p>
-                        <a href="#" class="btn btn-sm mt-2" style="background-color: #ffc107; color: var(--blue-dark); font-weight: bold;">Cek PPDB Sekarang</a>
+                        <a href="ppdb.php" class="btn btn-sm mt-2" style="background-color: #ffc107; color: var(--blue-dark); font-weight: bold;">Cek PPDB Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                         <i class="fas fa-map-marked-alt card-icon"></i>
                         <h5 class="card-title fw-bold" style="color: var(--blue-soft);">Data Sekolah Terdekat</h5>
                         <p class="card-text small text-secondary">Temukan informasi dan lokasi (Peta) Sekolah Negeri maupun Swasta di wilayah Anda, lengkap dengan akreditasi.</p>
-                        <a href="#" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Lihat Peta Sekolah</a>
+                        <a href="peta_sekolah.php" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Lihat Peta Sekolah</a>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                         <i class="fas fa-gift card-icon"></i>
                         <h5 class="card-title fw-bold" style="color: var(--blue-soft);">Info Beasiswa Pendidikan</h5>
                         <p class="card-text small text-secondary">Informasi terbaru mengenai program beasiswa, KJP Plus, dan bantuan dana pendidikan lainnya dari Pemprov DKI.</p>
-                        <a href="#" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Cek Beasiswa</a>
+                        <a href="beasiswa.php" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Cek Beasiswa</a>
                     </div>
                 </div>
             </div>
@@ -105,11 +105,11 @@
                 <ul class="list-group shadow-sm">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Kurikulum & Materi Pembelajaran Online
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Akses Materi</a>
+                        <a href="materi_online.php" class="btn btn-sm btn-outline-secondary">Akses Materi</a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Layanan Pengaduan Sekolah (Gratifikasi, Pungli, dst.)
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Lapor</a>
+                        <a href="lapor_sekolah.php" class="btn btn-sm btn-outline-secondary">Lapor</a>
                     </li>
                 </ul>
             </div>
@@ -118,7 +118,7 @@
 
     <footer class="text-white py-4" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Layanan Pendidikan DKI Jakarta.</p>
+            <p>&copy; 2025 CoreJKT - Layanan Pendidikan DKI Jakarta.</p>
         </div>
     </footer>
 

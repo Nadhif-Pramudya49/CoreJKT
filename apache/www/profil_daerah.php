@@ -83,7 +83,7 @@
                     </p>
                 </div>
                 <div class="col-lg-4 text-center">
-                    <img src="https://via.placeholder.com/300x200/cccccc/333?text=Monas" alt="Monas" class="img-fluid rounded shadow-sm">
+                    <img src="assets/DKI.jpeg" alt="Monas" class="img-fluid rounded shadow-sm">
                 </div>
             </div>
         </section>
@@ -128,7 +128,7 @@
 
     <footer class="text-white py-4" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Profil Daerah DKI Jakarta.</p>
+            <p>&copy; 2025 CoreJKT - Profil Daerah DKI Jakarta.</p>
         </div>
     </footer>
 

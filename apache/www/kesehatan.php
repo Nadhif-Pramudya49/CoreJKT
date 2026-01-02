@@ -49,7 +49,7 @@
                 <span class="brand-text">KESEHATAN DKI JAKARTA</span>
             </a>
             <div class="d-flex align-items-center">
-                <a href="dashboard.php" class="btn btn-success-custom"><i class="fas fa-home"></i> Kembali ke Dashboard</a>
+                <a href="dashboard.php" class="btn btn-success-custom"><i class="fas fa-home"></i>Dashboard</a>
             </div>
         </div>
     </nav>
@@ -73,7 +73,7 @@
                         <i class="fas fa-calendar-check card-icon"></i>
                         <h5 class="card-title fw-bold" style="color: var(--blue-soft);">Antrean Faskes Digital</h5>
                         <p class="card-text small text-secondary">Buat janji berobat ke Puskesmas atau Rumah Sakit tanpa perlu antre fisik di tempat. Lihat kuota dan jadwal dokter.</p>
-                        <a href="#" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Buat Janji Sekarang</a>
+                        <a href="antrean_faskes.php" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Buat Janji Sekarang</a>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         <i class="fas fa-map-marker-alt card-icon"></i>
                         <h5 class="card-title fw-bold" style="color: var(--blue-soft);">Peta Faskes Terdekat</h5>
                         <p class="card-text small text-secondary">Temukan lokasi Rumah Sakit, Puskesmas, Klinik, dan Apotek terdekat berdasarkan lokasi Anda saat ini.</p>
-                        <a href="#" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Lihat Peta</a>
+                        <a href="peta_faskes.php" class="btn btn-sm mt-2" style="background-color: var(--blue-soft); color: white;">Lihat Peta</a>
                     </div>
                 </div>
             </div>
@@ -109,15 +109,15 @@
                 <ul class="list-group shadow-sm">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Jadwal Vaksinasi COVID-19 & Influenza
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Cek Jadwal</a>
+                        <a href="jadwal_vaksin.php" class="btn btn-sm btn-outline-secondary">Cek Jadwal</a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Daftar BPJS Kesehatan dan Cek Status Kepesertaan
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Cek BPJS</a>
+                        <a href="cek_bpjs.php" class="btn btn-sm btn-outline-secondary">Cek BPJS</a>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Edukasi Kesehatan dan Tips Hidup Sehat
-                        <a href="#" class="btn btn-sm btn-outline-secondary">Baca Artikel</a>
+                        <a href="artikel_kesehatan.php" class="btn btn-sm btn-outline-secondary">Baca Artikel</a>
                     </li>
                 </ul>
             </div>
@@ -126,7 +126,7 @@
 
     <footer class="text-white py-4" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Layanan Kesehatan DKI Jakarta.</p>
+            <p>&copy; 2025 CoreJKT - Layanan Kesehatan DKI Jakarta.</p>
         </div>
     </footer>
 

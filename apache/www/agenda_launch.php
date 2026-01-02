@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css" /> 
     
     <style>
-        /* CSS Khusus Adenda */
+      
         .page-header {
             background-color: var(--blue-soft);
             color: white;
@@ -135,7 +135,7 @@
 
     <footer class="text-white py-4 mt-5" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Adenda Kegiatan Peluncuran.</p>
+            <p>&copy; 2025 CoreJKT - Adenda Kegiatan Peluncuran.</p>
         </div>
     </footer>
 

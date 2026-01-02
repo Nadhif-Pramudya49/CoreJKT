@@ -12,8 +12,21 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - HNJN
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: dbserver
+      PMA_USER: root
+      PMA_PASSWORD: rootpass123
     ports:
-      - "3306:3306"
+      - "8082:80"
+    networks:
+      - HNJN
+    depends_on:
+      - db
 
 volumes:
   db_data:

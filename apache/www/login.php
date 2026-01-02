@@ -5,20 +5,30 @@ require "config.php";
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $username = $_POST["username"];
+
+    $email = trim($_POST["email"]);
     $password = $_POST["password"];
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-    $stmt->execute([$username]);
+    // Cari user berdasarkan email atau username
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
+    $stmt->execute([$email, $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && $password === $user["password"]) { 
-        // TODO: nanti password diganti hashed password_hash()
-        $_SESSION["user"] = $user;
+    if ($user && password_verify($password, $user["password"])) {
+
+        // Set session
+        $_SESSION["user"] = [
+            "id" => $user["id"],
+            "username" => $user["username"],
+            "nama" => $user["nama"],
+            "email" => $user["email"]
+        ];
+
         header("Location: dashboard.php");
         exit;
+
     } else {
-        $error = "Username atau password salah!";
+        $error = "Email atau password salah!";
     }
 }
 ?>
@@ -26,45 +36,63 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>CoreJKT - Masuk</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #0d6efd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            background:white;
-            padding:20px;
-            border-radius:10px;
-        }
-    </style>
-</head>
-<body>
+  <meta charset="UTF-8">
+  <title>Login - CoreJKT</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="login-container">
-    <h3 class="text-center text-primary mb-3">CoreJKT</h3>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="login-body">
+
+  <div class="login-container text-center">
+    <img src="assets/Logo1.png" width="200" class="mb-3">
+    <h3 class="fw-bold">Login CoreJKT</h3>
+    <p>Masuk untuk melanjutkan</p>
 
     <?php if ($error): ?>
-        <div class="alert alert-danger"><?php echo $error; ?></div>
+      <div class="alert alert-danger">
+        <?= htmlspecialchars($error) ?>
+      </div>
     <?php endif; ?>
 
-    <form action="" method="POST">
-        <label class="form-label">Username</label>
-        <input name="username" type="text" class="form-control mb-3" required>
+    <form method="POST" class="text-start mt-4" autocomplete="off">
 
-        <label class="form-label">Password</label>
-        <input name="password" type="password" class="form-control mb-3" required>
+      <div class="mb-3">
+        <label>Email</label>
+        <input 
+          type="text" 
+          name="email" 
+          class="form-control" 
+          required
+          value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>">
+      </div>
 
-        <button class="btn btn-primary w-100">Masuk</button>
+      <div class="mb-3">
+        <label>Password</label>
+        <input 
+          type="password" 
+          name="password" 
+          class="form-control" 
+          required>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">
+        Masuk
+      </button>
+
     </form>
-</div>
+
+    <p class="mt-3 text-center">
+      Belum punya akun?
+      <a href="register.php">Registrasi di sini</a>
+    </p>
+
+    <p class="text-center mt-2">
+      <a href="index.php">← Kembali ke beranda</a>
+    </p>
+  </div>
 
 </body>
 </html>

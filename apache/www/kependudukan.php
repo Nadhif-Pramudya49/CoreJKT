@@ -128,7 +128,7 @@
 
     <footer class="text-white py-4" style="background-color: #051025 !important;">
         <div class="container text-center">
-            <p>&copy; 2024 CoreJKT - Layanan Kependudukan DKI Jakarta.</p>
+            <p>&copy; 2025 CoreJKT - Layanan Kependudukan DKI Jakarta.</p>
         </div>
     </footer>
 
