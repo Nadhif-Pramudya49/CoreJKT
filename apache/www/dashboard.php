@@ -148,11 +148,18 @@ session_start();
                 Halo, <?= htmlspecialchars($_SESSION['user']['nama']) ?>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
+
                 <li><a class="dropdown-item" href="edit_akun.php?id=<?= $_SESSION['user']['id'] ?>"><i
                       class="fas fa-user-edit me-2"></i> Edit Akun</a></li>
                 <li><a class="dropdown-item text-danger" href="hapus_akun.php?id=<?= $_SESSION['user']['id'] ?>"
                     onclick="return confirm('Yakin ingin menghapus akun?')"><i class="fas fa-trash me-2"></i> Hapus
                     Akun</a></li>
+
+                <li><a class="dropdown-item" href="#">English</a></li>
+                <li><a class="dropdown-item" href="#">Betawi</a></li>
+                <li><a class="dropdown-item" href="#">Sunda</a></li>
+                <li><a class="dropdown-item" href="#">Jawa</a></li>
+                <li><a class="dropdown-item" href="#">Bali</a></li>
               </ul>
             </div>
             <a href="logout.php" class="btn btn-danger me-2"> <i class="fas fa-sign-out-alt"></i> Logout </a>
