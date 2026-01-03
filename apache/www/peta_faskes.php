@@ -93,7 +93,7 @@ $faskes_list = [
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <span class="brand-text">Sistem Navigasi Kesehatan Jakarta</span>
             </a>
-            <a href="#" class="btn btn-outline-light btn-sm rounded-pill px-3">KEMBALI</a>
+            <a href="kesehatan.php" class="btn btn-outline-light btn-sm rounded-pill px-3">KEMBALI</a>
         </div>
     </nav>
 

@@ -2,15 +2,14 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 session_start();
-require_once __DIR__ . "/config.php";
+// require_once __DIR__ . "/config.php";
 
-//  API OpenWeatherMap
 $apiKey = "b6def0c12051858d60b6b697e0d774b8";
 $city = "Jakarta";
-$apiUrl = "https://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$apiKey}";
 
-
-$weatherData = @file_get_contents($apiUrl);
+// 1. Data Cuaca Saat Ini
+$currentUrl = "https://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=id&appid={$apiKey}";
+$weatherData = @file_get_contents($currentUrl);
 if ($weatherData) {
     $data = json_decode($weatherData, true);
     $temp = round($data['main']['temp']);
@@ -18,74 +17,141 @@ if ($weatherData) {
     $icon = $data['weather'][0]['icon'];
     $humidity = $data['main']['humidity'];
     $wind = $data['wind']['speed'];
+    $pressure = $data['main']['pressure'];
 } else {
-   
     $temp = "--";
-    $desc = "Data Cuaca Tidak Tersedia";
+    $desc = "Data Tidak Tersedia";
     $icon = "01d";
     $humidity = "--";
     $wind = "--";
+    $pressure = "--";
+}
+
+// 2. Data Prakiraan (Forecast) 5 Hari
+$forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q={$city}&units=metric&lang=id&appid={$apiKey}";
+$forecastDataRaw = @file_get_contents($forecastUrl);
+$forecasts = [];
+if ($forecastDataRaw) {
+    $fData = json_decode($forecastDataRaw, true);
+    // Kita ambil data jam 12 siang setiap harinya
+    foreach ($fData['list'] as $item) {
+        if (strpos($item['dt_txt'], '12:00:00') !== false) {
+            $forecasts[] = [
+                'day' => date('D', $item['dt']),
+                'temp' => round($item['main']['temp']),
+                'icon' => $item['weather'][0]['icon'],
+                'desc' => $item['weather'][0]['description']
+            ];
+        }
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8">
-    <title>Pantau Cuaca Jakarta - CoreJKT</title>
+    <title>Dashboard Cuaca Jakarta - CoreJKT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
 
     <style>
-        body {
-            background-color: #f4f7f6;
+        :root {
+            --blue-dark: #051025;
+            --blue-soft: #0d6efd;
+            --glass: rgba(255, 255, 255, 0.15);
         }
 
-        
-        .weather-gradient-card {
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(180deg, #f0f4f8 0%, #d9e2ec 100%);
+            min-height: 100vh;
+        }
+
+        .weather-main-card {
             background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-soft) 100%);
+            border-radius: 30px;
             color: white;
-            border-radius: 25px;
             padding: 40px;
             border: none;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(5, 16, 37, 0.2);
         }
 
-        .weather-icon-main {
-            width: 150px;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        .weather-icon-animate {
+            width: 160px;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
         }
 
-        .temp-display {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1;
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
-        .weather-detail-box {
-            background: rgba(255, 255, 255, 0.1);
+        .glass-box {
+            background: var(--glass);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 15px;
+            transition: 0.3s;
         }
 
-        .refresh-status {
-            font-size: 0.8rem;
-            opacity: 0.8;
+        .glass-box:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
         }
 
-       
-        .cloud-bg {
+        .forecast-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.3s;
+        }
+
+        .forecast-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(13, 110, 253, 0.15);
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .temp-main {
+            font-size: 5.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .cloud-bg-element {
             position: absolute;
             top: -20px;
             right: -20px;
-            font-size: 10rem;
-            opacity: 0.1;
+            font-size: 12rem;
+            opacity: 0.05;
+            z-index: 0;
         }
     </style>
 </head>
@@ -95,77 +161,111 @@ if ($weatherData) {
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3" style="background-color: var(--blue-dark);">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="dashboard.php">
-                <img src="assets/Logo1.png" alt="Logo CoreJKT" class="me-2" style="height: 40px;">
-                <span class="brand-text">PANTAU CUACA KOTA</span>
+                <img src="assets/Logo1.png" alt="Logo" class="me-2" style="height: 40px;">
+                <span class="fw-bold">CORE<span class="text-info">WEATHER</span></span>
             </a>
             <div class="d-flex align-items-center">
-                <a href="dashboard.php" class="btn btn-success-custom"><i class="fas fa-home"></i> Kembali ke Dashboard</a>
+                <a href="dashboard.php" class="btn btn-outline-light rounded-pill px-4 btn-sm">
+                    <i class="fas fa-arrow-left me-1"></i> Dashboard
+                </a>
             </div>
         </div>
     </nav>
 
     <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card weather-gradient-card shadow-lg mb-4">
-                    <i class="fas fa-cloud cloud-bg"></i>
-                    <div class="row align-items-center">
-                        <div class="col-md-6 text-center text-md-start">
-                            <h4 class="fw-bold mb-1"><i class="fas fa-location-dot me-2"></i><?= $city ?>, Indonesia
-                            </h4>
-                            <p class="mb-4 opacity-75"><?= date('l, d F Y') ?></p>
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-10">
+                <div class="weather-main-card shadow-lg">
+                    <i class="fas fa-cloud cloud-bg-element"></i>
+                    <div class="row align-items-center relative-z">
+                        <div class="col-md-7 text-center text-md-start">
+                            <h5 class="fw-bold text-info text-uppercase mb-2" style="letter-spacing: 2px;">Cuaca Saat
+                                Ini</h5>
+                            <h2 class="fw-bold mb-0"><i class="fas fa-location-dot me-2"></i><?= $city ?>, JKT</h2>
+                            <p class="opacity-75"><?= date('l, d F Y | H:i') ?> WIB</p>
 
-                            <div class="temp-display"><?= $temp ?>°C</div>
-                            <h3 class="fw-light mb-0"><?= $desc ?></h3>
-                        </div>
-                        <div class="col-md-6 text-center">
-                            <img src="https://openweathermap.org/img/wn/<?= $icon ?>@4x.png" class="weather-icon-main"
-                                alt="Icon">
-                            <div class="refresh-status">
-                                <i class="fas fa-sync-alt fa-spin me-1"></i> Data diperbarui otomatis tiap 10 menit
+                            <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                                <span class="temp-main"><?= $temp ?>°</span>
+                                <div class="ms-3 text-start">
+                                    <h4 class="mb-0 fw-bold">Celcius</h4>
+                                    <p class="mb-0 opacity-75"><?= $desc ?></p>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-5 text-center">
+                            <img src="https://openweathermap.org/img/wn/<?= $icon ?>@4x.png"
+                                class="weather-icon-animate" alt="icon">
                         </div>
                     </div>
 
                     <div class="row g-3 mt-4">
-                        <div class="col-md-4">
-                            <div class="weather-detail-box text-center">
-                                <i class="fas fa-droplet mb-2"></i>
+                        <div class="col-md-3 col-6">
+                            <div class="glass-box text-center">
+                                <i class="fas fa-droplet text-info mb-2"></i>
                                 <p class="small mb-0 opacity-75">Kelembapan</p>
                                 <h5 class="fw-bold mb-0"><?= $humidity ?>%</h5>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="weather-detail-box text-center">
-                                <i class="fas fa-wind mb-2"></i>
-                                <p class="small mb-0 opacity-75">Kecepatan Angin</p>
+                        <div class="col-md-3 col-6">
+                            <div class="glass-box text-center">
+                                <i class="fas fa-wind text-warning mb-2"></i>
+                                <p class="small mb-0 opacity-75">Kec. Angin</p>
                                 <h5 class="fw-bold mb-0"><?= $wind ?> m/s</h5>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="weather-detail-box text-center">
-                                <i class="fas fa-sun mb-2"></i>
-                                <p class="small mb-0 opacity-75">Indeks UV</p>
+                        <div class="col-md-3 col-6">
+                            <div class="glass-box text-center">
+                                <i class="fas fa-gauge-high text-success mb-2"></i>
+                                <p class="small mb-0 opacity-75">Tekanan</p>
+                                <h5 class="fw-bold mb-0"><?= $pressure ?> hPa</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="glass-box text-center">
+                                <i class="fas fa-sun text-danger mb-2"></i>
+                                <p class="small mb-0 opacity-75">UV Index</p>
                                 <h5 class="fw-bold mb-0">Rendah</h5>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="alert bg-white border-0 shadow-sm rounded-4 p-4">
-                    <div class="d-flex align-items-start">
-                        <i class="fas fa-lightbulb fa-2x text-warning me-3"></i>
-                        <div>
-                            <h6 class="fw-bold mb-1">Rekomendasi Hari Ini</h6>
-                            <p class="text-muted small mb-0">
-                                <?php if (strpos(strtolower($desc), 'hujan') !== false): ?>
-                                    Jakarta sedang diprediksi hujan. Jangan lupa siapkan payung atau jas hujan, dan tetap
-                                    waspada di titik rawan genangan.
-                                <?php else: ?>
-                                    Cuaca cukup baik untuk beraktivitas di luar ruangan. Pastikan tetap menjaga hidrasi
-                                    tubuh di tengah teriknya matahari Jakarta.
-                                <?php endif; ?>
-                            </p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h4 class="section-title"><i class="fas fa-calendar-days text-primary"></i> Prakiraan 5 Hari Kedepan
+                </h4>
+                <div class="row g-3">
+                    <?php foreach ($forecasts as $f): ?>
+                        <div class="col">
+                            <div class="forecast-card shadow-sm">
+                                <p class="fw-bold text-muted mb-1"><?= $f['day'] ?></p>
+                                <img src="https://openweathermap.org/img/wn/<?= $f['icon'] ?>.png" alt="icon">
+                                <h4 class="fw-bold mb-0"><?= $f['temp'] ?>°</h4>
+                                <p class="small text-muted text-capitalize mb-0"><?= $f['desc'] ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <div class="mt-5">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning bg-opacity-25 p-3 rounded-circle me-4">
+                                <i class="fas fa-lightbulb text-warning fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Rekomendasi Aktivitas</h5>
+                                <p class="text-muted mb-0">
+                                    <?php if (strpos(strtolower($desc), 'hujan') !== false): ?>
+                                        Siapkan payung atau jas hujan sebelum beraktivitas di luar. Pantau titik genangan
+                                        air di portal CoreJKT.
+                                    <?php else: ?>
+                                        Cuaca cerah berawan. Sangat cocok untuk berolahraga di taman kota Jakarta pagi ini.
+                                    <?php endif; ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -173,19 +273,21 @@ if ($weatherData) {
         </div>
     </div>
 
-    <footer class="text-white py-4" style="background-color: #051025 !important;">
+    <footer class="text-white py-5 mt-5" style="background-color: var(--blue-dark);">
         <div class="container text-center">
-            <p>&copy; 2025 CoreJKT -  Sistem Informasi Cuaca Terpadu Jakarta.</p>
+            <div class="mb-3">
+                <i class="fas fa-cloud-sun fa-2x text-info"></i>
+            </div>
+            <p class="mb-1 fw-bold">© 2026 CoreJKT Smart City</p>
+            <p class="small opacity-50">Sistem Informasi Cuaca Terintegrasi Jakarta. Data oleh OpenWeather.</p>
         </div>
     </footer>
 
-    <script>
-        setTimeout(function () {
-            window.location.reload();
-        }, 600000);
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Auto refresh halaman setiap 10 menit
+        setTimeout(() => { window.location.reload(); }, 600000);
+    </script>
 </body>
 
 </html>
